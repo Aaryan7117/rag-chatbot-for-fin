@@ -102,6 +102,96 @@ uvicorn api.main:app --host 0.0.0.0 --port 8000
 - **Citation Accuracy**: Correct section/page references
 - **Failure Handling**: Proper "not found" responses
 
+## Version Control
+
+### Initial Setup
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd ragprod
+
+# Configure your identity
+git config user.name "Your Name"
+git config user.email "your.email@example.com"
+```
+
+### Branching Strategy
+
+| Branch | Purpose |
+|--------|---------|
+| `main` | Production-ready code |
+| `develop` | Integration branch for features |
+| `feature/*` | New features (e.g., `feature/table-extraction`) |
+| `bugfix/*` | Bug fixes (e.g., `bugfix/chunker-error`) |
+| `hotfix/*` | Urgent production fixes |
+
+### Common Workflows
+
+**Creating a Feature Branch**
+```bash
+git checkout develop
+git pull origin develop
+git checkout -b feature/your-feature-name
+```
+
+**Committing Changes**
+```bash
+git add .
+git commit -m "feat: add new feature description"
+```
+
+**Commit Message Prefixes**
+- `feat:` - New feature
+- `fix:` - Bug fix
+- `docs:` - Documentation changes
+- `refactor:` - Code refactoring
+- `test:` - Adding/updating tests
+- `chore:` - Maintenance tasks
+
+**Pushing Changes**
+```bash
+git push origin feature/your-feature-name
+```
+
+**Creating a Pull Request**
+1. Push your branch to the remote repository
+2. Navigate to the repository on GitHub/GitLab
+3. Create a Pull Request from your branch to `develop`
+4. Request review from team members
+
+**Syncing with Main**
+```bash
+git checkout develop
+git pull origin develop
+git checkout your-branch
+git merge develop
+```
+
+### .gitignore Recommendations
+
+Ensure your `.gitignore` includes:
+```
+# Data and indexes
+data/
+*.faiss
+*.pkl
+
+# Environment
+.env
+venv/
+__pycache__/
+
+# IDE
+.vscode/
+.idea/
+
+# Models (large files)
+models/
+*.bin
+*.safetensors
+```
+
 ## License
 
 MIT License
